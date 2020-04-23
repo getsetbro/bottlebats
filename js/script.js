@@ -1,8 +1,8 @@
-import * as THREE from "./build/three.module.js";
-import { OrbitControls } from "./jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "./jsm/loaders/GLTFLoader.js";
-import { RectAreaLightUniformsLib } from "./jsm/lights/RectAreaLightUniformsLib.js";
-import { RectAreaLightHelper } from "./jsm/helpers/RectAreaLightHelper.js";
+import * as THREE from "../build/three.module.js";
+import { OrbitControls } from "../jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "../jsm/loaders/GLTFLoader.js";
+import { RectAreaLightUniformsLib } from "../jsm/lights/RectAreaLightUniformsLib.js";
+import { RectAreaLightHelper } from "../jsm/helpers/RectAreaLightHelper.js";
 const canvas = document.querySelector( "#c" );
 const renderer = new THREE.WebGLRenderer( { canvas,antialias: true } );
 // camera
