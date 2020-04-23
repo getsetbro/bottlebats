@@ -1,12 +1,12 @@
-import * as THREE from "../build/three.module.js";
-import { OrbitControls } from "../jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "../jsm/loaders/GLTFLoader.js";
-import { RectAreaLightUniformsLib } from "../jsm/lights/RectAreaLightUniformsLib.js";
-import { RectAreaLightHelper } from "../jsm/helpers/RectAreaLightHelper.js";
+import * as THREE from "./build/three.module.js";
+import { OrbitControls } from "./jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "./jsm/loaders/GLTFLoader.js";
+import { RectAreaLightUniformsLib } from "./jsm/lights/RectAreaLightUniformsLib.js";
+import { RectAreaLightHelper } from "./jsm/helpers/RectAreaLightHelper.js";
 const canvas = document.querySelector( "#c" );
 const renderer = new THREE.WebGLRenderer( { canvas,antialias: true } );
 // camera
-const camera = new THREE.PerspectiveCamera( 55, 2, 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera( 55, 2, 0.1, 2000 );
 camera.position.set( 155, 222, 222 );
 
 // controls
@@ -15,40 +15,40 @@ controls.update();
 
 // scene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color( "gray" );
+scene.background = new THREE.Color( 0x333333 );
 
 // GROUND
 var geometry = new THREE.PlaneBufferGeometry( 555, 555 );
-var planeMaterial = new THREE.MeshPhongMaterial( { color: "darkgreen",side: THREE.DoubleSide } );
+var planeMaterial = new THREE.MeshPhongMaterial( { color: 0x555555,side: THREE.DoubleSide } );
 var ground = new THREE.Mesh( geometry, planeMaterial );
 ground.position.set( 0, 0, 0 );
 ground.rotation.x = Math.PI / -2;
 scene.add( ground );
 
 // HemisphereLight
-const skyColor = 0xffffff;  // light blue
-const groundColor = 0xB97A20;  // brownish orange
-const light = new THREE.HemisphereLight( skyColor, groundColor, 1 );
-scene.add( light );
+// const skyColor = 0xffffff;  // light blue
+// const groundColor = 0xB97A20;  // brownish orange
+// const light = new THREE.HemisphereLight( skyColor, groundColor, 1 );
+// scene.add( light );
 
 // Lights
 
-// const ambient = new THREE.AmbientLight( 0xFFFFFF, 1.5 );
-// scene.add( ambient );
+const ambient = new THREE.AmbientLight( 0xFFFFFF, 1.5 );
+scene.add( ambient );
 
 RectAreaLightUniformsLib.init();
 {
-  const light = new THREE.RectAreaLight( 0xFFFFFF, 5, 555, 555 );
-  light.position.set( 0, 200, 300 );
-  light.rotation.x = THREE.MathUtils.degToRad( -45 );
+  const light = new THREE.RectAreaLight( 0xFFFFFF, 9, 500, 500 );
+  light.position.set( 0, 160, 200 );
+  light.rotation.x = THREE.MathUtils.degToRad( -55 );
   scene.add( light );
   const helper = new RectAreaLightHelper( light );
   light.add( helper );
 }
 {
-  const light = new THREE.RectAreaLight( 0xFFFFFF, 5, 555, 555 );
-  light.position.set( 0, 200, -300 );
-  light.rotation.x = THREE.MathUtils.degToRad( 220 );
+  const light = new THREE.RectAreaLight( 0xFFFFFF, 9, 500, 500 );
+  light.position.set( 0, 160, -200 );
+  light.rotation.x = THREE.MathUtils.degToRad( 230 );
   scene.add( light );
   const helper = new RectAreaLightHelper( light );
   light.add( helper );
